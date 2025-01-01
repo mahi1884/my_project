@@ -7,6 +7,18 @@ cout<<"3. Difficulty"<<endl;
 cout<<"4. Help"<<endl;
 cout<<"5. Exit"<<endl;
 }
+void drawMap(){
+for (int i=0 ;i<10 ;i++){
+    for(int j=0;j<20;j++){
+        if(i==0 || i==9 ||j==0 || j==19){
+            cout<<"X";}
+        else if (i==1 && j==1){
+            cout<<"S";}
+        else{cout<<" ";}
+    }
+    cout<<endl;
+}
+}
 int main(){
 int choice;
 while(true){
@@ -15,7 +27,9 @@ while(true){
  cout<<"Enter your choice: ";
  cin>>choice;
  if(choice==1){
-    cout<<"Starting the game..."<<endl;
+    system("cls");
+    drawMap();
+    system("pause");
  }
  else if(choice==5){
     cout<<"Exiting.."<<endl;
