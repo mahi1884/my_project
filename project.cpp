@@ -8,9 +8,9 @@ cout<<"4. Help"<<endl;
 cout<<"5. Exit"<<endl;
 }
 void drawMap(){
-for (int i=0 ;i<10 ;i++){
+for (int i=0 ;i<20 ;i++){
     for(int j=0;j<20;j++){
-        if(i==0 || i==9 ||j==0 || j==19){
+        if(i==0 || i==19 ||j==0 || j==19){
             cout<<"X";}
         else if (i==1 && j==1){
             cout<<"S";}
