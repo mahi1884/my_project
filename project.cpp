@@ -10,11 +10,21 @@ cout<<"5. Exit"<<endl;
 int main(){
 int choice;
 while(true){
- systeam("cls");
+ system("cls");
  ShowMenu();
  cout<<"Enter your choice: ";
- cin<<choice;
-
+ cin>>choice;
+ if(choice==1){
+    cout<<"Starting the game..."<<endl;
+ }
+ else if(choice==5){
+    cout<<"Exiting.."<<endl;
+    break;
+ }
+ else{
+    cout<<"Invalid option!"<<endl;
+ }
+ system("pause");
 }
 return 0;
 }
