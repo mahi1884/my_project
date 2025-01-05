@@ -2,8 +2,8 @@
 #include<conio.h>
 #include<windows.h>
 using namespace std;
-int enemyX[3]={5,10,15};
-int enemyY[3]={5,10,15};
+int enemyX[3]={5,11,15};
+int enemyY[3]={5,11,15};
 int enemyDir[3]={1,-1,1};
 void ShowMenu(){
 cout<<"1. Start Game"<<endl;
@@ -20,7 +20,7 @@ for (int i=0 ;i<21 ;i++){
             else if ((i==enemyX[0]&& j==enemyY[0])||
                      (i==enemyX[1] && j==enemyY[1]||
                       (i==enemyX[2] && j==enemyY[2]) )){
-                        cout<<"E";}
+                        cout<<"E ";}
             else if(i%2==0&&j%2==0){
             cout<<"XX";}
         else if (i == playerX && j == playerY){
@@ -32,10 +32,11 @@ for (int i=0 ;i<21 ;i++){
 }
 void updateEnemies(){
 for(int i=0; i<3 ; i++)
-    if(enemyDir[i]==1&& enemyY[i]<19){
-        enemyY[i]++;
+    if(enemyDir[i]==1&& enemyY[i]<19){enemyY[i]++;}
+     else if (enemyDir[i] == -1 && enemyY[i] > 1) {enemyY[i]--;}
+         else {enemyDir[i] *= -1;}
     }
-}
+
 void movePlayer() {
     int playerX = 1, playerY = 1;
     char input;
@@ -43,13 +44,17 @@ void movePlayer() {
     while (true) {
         system("cls");
         drawMap(playerX,playerY);
+        if (_kbhit()) {
         input = _getch();
         if (input == 'w' && playerX > 1&& !(playerX-1==5&&playerY==5)) playerX--;
         else if (input == 's' && playerX < 18&& !(playerX+1==5&&playerY==5)) playerX++;
         else if (input == 'a' && playerY > 1&& !(playerX==5&&playerY-1==5)) playerY--;
         else if (input == 'd' && playerY < 18&&!(playerX==5&&playerY+1==5)) playerY++;
         else if (input == 'q') break;
-    }
+        }
+        updateEnemies();
+        Sleep(200);
+}
 }
 int main(){
 int choice;
