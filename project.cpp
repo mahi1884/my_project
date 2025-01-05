@@ -1,6 +1,10 @@
 #include<iostream>
 #include<conio.h>
+#include<windows.h>
 using namespace std;
+int enemyX[3]={5,10,15};
+int enemyY[3]={5,10,15};
+int enemyDir[3]={1,-1,1};
 void ShowMenu(){
 cout<<"1. Start Game"<<endl;
 cout<<"2. load Game"<<endl;
@@ -13,16 +17,24 @@ for (int i=0 ;i<21 ;i++){
     for(int j=0;j<21;j++){
         if(i==0 || i==20 ||j==0 || j==20){
             cout<<"* ";}
+            else if ((i==enemyX[0]&& j==enemyY[0])||
+                     (i==enemyX[1] && j==enemyY[1]||
+                      (i==enemyX[2] && j==enemyY[2]) )){
+                        cout<<"E";}
             else if(i%2==0&&j%2==0){
             cout<<"XX";}
-            else if (i==10 &&j==10){
-            cout<<"E";}
         else if (i == playerX && j == playerY){
             cout<<"S ";}
         else{cout<<"  ";}
     }
     cout<<endl;
 }
+}
+void updateEnemies(){
+for(int i=0; i<3 ; i++)
+    if(enemyDir[i]==1&& enemyY[i]<19){
+        enemyY[i]++;
+    }
 }
 void movePlayer() {
     int playerX = 1, playerY = 1;
