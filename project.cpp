@@ -6,7 +6,13 @@ char map[21][21];
 int enemyX[3]={5,11,15};
 int enemyY[3]={5,11,15};
 int enemyDir[3]={1,-1,1};
-
+void ShowMenu(){
+cout<<"1. Start Game"<<endl;
+cout<<"2. load Game"<<endl;
+cout<<"3. Difficulty"<<endl;
+cout<<"4. Help"<<endl;
+cout<<"5. Exit"<<endl;
+}
 int brickBlocks[][2] = {
     {1, 2}, {1, 8}, {1, 19}, {1, 18}, {1, 17}, {2, 3}, {2, 7}, {2, 11},
     {3, 1}, {3, 5}, {3, 8}, {3, 18}, {4, 11}, {4, 19}, {5, 2}, {5, 3},
@@ -21,13 +27,6 @@ int brickBlocks[][2] = {
     {18, 17}, {18, 19}, {19, 1}, {19, 2}, {19, 6}, {19, 7}, {19, 12},
     {19, 13}, {19, 17}, {19, 18}
 };
-void ShowMenu(){
-cout<<"1. Start Game"<<endl;
-cout<<"2. load Game"<<endl;
-cout<<"3. Difficulty"<<endl;
-cout<<"4. Help"<<endl;
-cout<<"5. Exit"<<endl;
-}
 void initializeMap(){
 for(int i=0 ; i<21; i++){
     for(int j=0 ; j<21;j++){
@@ -82,6 +81,24 @@ void movePlayer() {
         else if (input == 's' && isWalkable(playerX+1,playerY)) playerX++;
         else if (input == 'a' && isWalkable(playerX,playerY-1)) playerY--;
         else if (input == 'd' && isWalkable(playerX,playerY+1)) playerY++;
+        else if (input == 'e') {
+             if (map[playerX - 1][playerY] == 'N') map[playerX - 1][playerY] = ' ';
+        else if (map[playerX + 1][playerY] == 'N') map[playerX + 1][playerY] = ' ';
+        else if (map[playerX][playerY - 1] == 'N') map[playerX][playerY - 1] = ' ';
+        else if (map[playerX][playerY + 1] == 'N') map[playerX][playerY + 1] = ' ';
+            }
+            else if (input == 'k') { for (int i = 0; i < 3; i++) {
+                    if ((enemyX[i] == playerX - 1 && enemyY[i] == playerY) ||
+                        (enemyX[i] == playerX + 1 && enemyY[i] == playerY) ||
+                        (enemyX[i] == playerX && enemyY[i] == playerY - 1) ||
+                        (enemyX[i] == playerX && enemyY[i] == playerY + 1)) {
+                        enemyX[i] = -1;
+                        enemyY[i] = -1;
+                        cout << "Enemy killed!" << endl;
+                        break;
+                    }
+                }
+            }
         else if (input == 'q') break;
         }
         updateEnemies();
